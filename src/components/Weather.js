@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Weather = props => (
-  <div>
+  <div classNAme="weather__info">
     {/* if this states exist, display the text */}
     {props.city && props.country && (
       <p>

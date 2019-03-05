@@ -49,6 +49,7 @@ class App extends Component {
     } catch (e) {
       console.log(e)
     } finally {
+      // this sets the error state equal to the error message in the object that the API returns
       this.setState({
         error: data.message,
       })
@@ -57,16 +58,28 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Title />
-        <Form getWeather={this.getWeather} />
-        <Weather
-          temperature={this.state.temperature}
-          city={this.state.city}
-          country={this.state.country}
-          humidity={this.state.humidity}
-          description={this.state.description}
-          error={this.state.error}
-        />
+        <div className="wrapper">
+          <div className="main">
+            <div className="container">
+              <div className="row">
+                <div className="col-5 title-container">
+                  <Title />
+                </div>
+                <div className="col-7 form-container">
+                  <Form getWeather={this.getWeather} />
+                  <Weather
+                    temperature={this.state.temperature}
+                    city={this.state.city}
+                    country={this.state.country}
+                    humidity={this.state.humidity}
+                    description={this.state.description}
+                    error={this.state.error}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
