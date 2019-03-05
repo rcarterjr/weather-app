@@ -21,11 +21,14 @@ class App extends Component {
     e.preventDefault() // prevents a full page refresh so we can see the object in console
     const city = e.target.elements.city.value
     const country = e.target.elements.country.value
+    var api_call = null
+    var data = null
+
     try {
-      const api_call = await fetch(
+      api_call = await fetch(
         `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${API_KEY}&units=imperial`
       ) // change 'weather' to 'forcast' in url for more info!!
-      const data = await api_call.json()
+      data = await api_call.json()
 
       // saves the page from breaking if user presses button before defining
       if (city && country) {
@@ -43,9 +46,11 @@ class App extends Component {
           error: 'Please enter the city and country',
         })
       }
-    } catch {
+    } catch (e) {
+      console.log(e)
+    } finally {
       this.setState({
-        error: 'Location not found',
+        error: data.message,
       })
     }
   }
