@@ -27,7 +27,7 @@ class App extends Component {
     try {
       api_call = await fetch(
         `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${API_KEY}&units=imperial`
-      ) // change 'weather' to 'forcast' in url for more info!!
+      ) // change 'weather' to 'forecast' in url for more info!!
       data = await api_call.json()
 
       // saves the page from breaking if user presses button before defining
